@@ -56,7 +56,7 @@ class Works
     private $users;
 
     /**
-     * @ORM\ManyToOne(targetEntity=categories::class, inversedBy="works")
+     * @ORM\ManyToOne(targetEntity=Categories::class, inversedBy="works")
      * @ORM\JoinColumn(nullable=false)
      */
     private $categories;

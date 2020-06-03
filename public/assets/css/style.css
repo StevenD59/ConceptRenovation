@@ -1,0 +1,171 @@
+.sizeLogoWork {
+    height: 120px;
+}
+
+/* CONTENT MINIMUM SIZE */
+
+* {
+    margin: 0;
+}
+
+html, body {
+    height: 100%;
+}
+
+.page-wrap {
+    min-height: 100%;
+}
+
+.page-categories{
+    min-height: 69%;
+}
+
+/* MENU HEADER CSS */
+
+.liHeader:hover {
+    color: black;
+}
+
+.liHeader {
+    display: inline;
+    list-style-type: none;
+    color: rgb(19, 193, 246);
+}
+
+/* BACKGROUND COLOR */
+
+.backgroundNavbar, .backgroundTitle, .colorAccueilButton, .backgroundServices, .services, .backgroundFooter, .backgroundColorContact {
+    background-color: rgb(19, 193, 246);
+}
+
+/* TAILLE IMAGE CAROUSEL */
+
+.sizeImageCarousel {
+    width: 860px;
+    height: 360px;
+}
+
+/* LI ACCUEIL */
+
+.liContent {
+    list-style-type: none;
+}
+
+/* RESPONSIVE GOOGLE MAP */
+
+.map-responsive {
+    overflow: hidden;
+    padding-bottom: 56.25%;
+    position: relative;
+    height: 0;
+}
+
+.map-responsive iframe {
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+}
+
+/* TAILLE IMAGE DEVIS FOOTER */
+
+.sizeDevisFooter {
+    height: 90px;
+}
+
+/* TAILLE IMAGE REALISATIONS */
+
+.sizeImageRealisation {
+    max-height: 139px;
+    min-width: 255px;
+    max-width: 255px;
+}
+
+.sizeBigImageRealisation {
+    max-height: 475px;
+    max-width: 870px;
+}
+
+/* TAILLE TELEPHONE */
+
+@media (max-width: 767px) {
+    .mtButton, .responsiveMt {
+        margin-top: 10px;
+    }
+    .sizeImageCarousel {
+        height: 160px;
+    }
+    .centerFooter, .centerFooterDevis {
+        display: flex;
+        justify-content: center;
+    }
+    .borderBottomFooter {
+        border-top: black 3px solid;
+        border-radius: 5px;
+    }
+    .sizeDevisFooter {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+}
+
+/* TAILLE ECRAN IPAD */
+
+@media (min-width: 768px) and (max-width: 991px) {
+    .centerFooterDevis {
+        display: flex;
+        justify-content: end;
+    }
+    .sizeBigImageRealisation {
+        max-height: 350px;
+        min-height: 350px;
+        max-width: 620px;
+    }
+    .mtLittleImageRealisation {
+        margin-top: 10px;
+    }
+    .marginTopIpad {
+        margin-top: 150px;
+    }
+
+    .mtCategories{
+        margin: 20px;
+    }
+}
+
+/* TAILLE ECRAN GRAND */
+
+@media (min-width: 992px) {
+    .sizeAccueilButtonMarginTop {
+        margin-top: 150px;
+    }
+    .centerFooterDevis {
+        display: flex;
+        justify-content: end;
+    }
+
+    .mtCategories{
+        padding-top: 115px;
+    }
+}
+
+/* CSSS PARTIE ADMINISTRATEUR */
+
+.backgroundMenu{
+    background-color: darkgrey;
+    min-height: 602px;
+    border-top: black 1px solid;
+}
+
+.liste{
+    list-style-type:none;
+}
+
+.colorIconTab{
+    color: rgb(33, 37, 41);;
+}
+
+.color_div{
+    background-color: darkgray;
+}

@@ -3,14 +3,16 @@
 namespace App\Entity;
 
 use App\Repository\UsersRepository;
+use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass=UsersRepository::class)
  */
-class Users
+class Users implements UserInterface
 {
     /**
      * @ORM\Id()
@@ -78,6 +80,8 @@ class Users
     {
         $this->works = new ArrayCollection();
         $this->messages = new ArrayCollection();
+        $this->createdAt = new DateTime();
+        $this->activate = 1;
     }
 
     public function getId(): ?int
@@ -253,5 +257,43 @@ class Users
         }
 
         return $this;
+    }
+
+    /**
+     * @inheritDoc
+     */
+
+    public function getRoles(): array
+    {
+        $roles = [];
+        $roles[] = $this->role;
+        $roles[] = 'ROLE_USER';
+        return array_unique($roles);
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    public function getSalt()
+    {
+        // you may need a real salt depending on your encoder
+        // see section on salt below
+        return null;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getUsername()
+    {
+        return $this->mail;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function eraseCredentials()
+    {
     }
 }

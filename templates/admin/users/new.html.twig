@@ -1,0 +1,16 @@
+{% extends 'admin/index.html.twig' %}
+
+{% block title %}New Users{% endblock %}
+
+{% block body %}
+    
+    {{ form_start(form)}}
+
+    {{ form_widget(form) }}
+
+    <button type="submit">Enregistret</button>
+
+    {{ form_end(form)}}
+
+    <a href="{{ path('users_index') }}">back to list</a>
+{% endblock %}
