@@ -3,4 +3,7 @@
 		<li>- Liste des réalisations</li>
 		<li class="mt-3">- Liste des devis</li>
 	</ol>
+	{% if app.user %}
+		<a type="button" href="{{ path('security_logout') }}" class="btn-sm btn-outline-dark ml-3">Deconnexion</a>
+	{% endif %}
 </div>

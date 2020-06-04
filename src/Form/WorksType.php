@@ -4,6 +4,9 @@ namespace App\Form;
 
 use App\Entity\Works;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -12,14 +15,16 @@ class WorksType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title')
-            ->add('description')
-            ->add('createdAt')
-            ->add('updatedAt')
-            ->add('deletedAt')
-            ->add('activate')
+            ->add('title', TextType::class)
+            ->add('description', TextareaType::class)
             ->add('users')
-            ->add('categories')
+            ->add('categories', ChoiceType::class, [
+                'choices' => [
+                    'Travaux intérieur' => 'ROLE_USER',
+                    'Travaux extérieur' => 'ROLE_ADMIN',
+                    'Travaux électrique' => ''
+                ]
+            ]);
         ;
     }
 

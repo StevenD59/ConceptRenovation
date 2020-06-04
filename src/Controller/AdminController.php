@@ -76,6 +76,8 @@ class AdminController extends AbstractController
 
 
 
+    // ---------------------- CRUD USERS ----------------------------------
+
 
 
     /**
@@ -95,12 +97,34 @@ class AdminController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
 
-            return $this->redirectToRoute('users_index');
+            return $this->redirectToRoute('users_new');
         }
 
         return $this->render('admin/users/new.html.twig', [
             'user' => $user,
             'form' => $form->createView(),
         ]);
+    }
+
+
+
+
+    // ---------------------------- CONNEXION ---------------------------------------------
+
+    /**
+     * @Route("/connexion", name="security_login")
+     */
+    public function login()
+    {
+        if ($this->getUser()) {
+            return $this->redirectToRoute('works_index');
+        }
+        return $this->render('admin/users/login.html.twig');
+    }
+    /**
+     * @Route("/logout", name="security_logout")
+     */
+    public function logout()
+    {
     }
 }

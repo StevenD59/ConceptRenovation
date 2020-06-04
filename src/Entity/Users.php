@@ -287,7 +287,7 @@ class Users implements UserInterface
      */
     public function getUsername()
     {
-        return $this->mail;
+        return $this->email;
     }
 
     /**

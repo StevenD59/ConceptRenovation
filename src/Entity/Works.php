@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\WorksRepository;
+use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -69,6 +70,8 @@ class Works
     public function __construct()
     {
         $this->images = new ArrayCollection();
+        $this->createdAt = new DateTime();
+        $this->activate = 1;
     }
 
     public function getId(): ?int
