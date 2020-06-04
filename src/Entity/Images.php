@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\ImagesRepository;
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -47,6 +48,11 @@ class Images
      * @ORM\JoinColumn(nullable=false)
      */
     private $works;
+
+    public function __construct(){
+        $this->createdAt = new DateTime();
+        $this->activate = 1;
+    }
 
     public function getId(): ?int
     {

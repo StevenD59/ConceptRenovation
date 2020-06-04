@@ -87,6 +87,13 @@ html, body {
     max-width: 870px;
 }
 
+
+/* COULEUR LIEN MENU ADMIN */
+
+.lien{
+    color: black;
+}
+
 /* TAILLE TELEPHONE */
 
 @media (max-width: 767px) {
@@ -150,7 +157,7 @@ html, body {
     }
 }
 
-/* CSSS PARTIE ADMINISTRATEUR */
+/* CSS PARTIE ADMINISTRATEUR */
 
 .backgroundMenu{
     background-color: darkgrey;

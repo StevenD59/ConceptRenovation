@@ -16,15 +16,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class WorksController extends AbstractController
 {
 
-    /**
-     * @Route("/{id}", name="works_show", methods={"GET"})
-     */
-    public function show(Works $work): Response
-    {
-        return $this->render('works/show.html.twig', [
-            'work' => $work,
-        ]);
-    }
+    
 
     
 

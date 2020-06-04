@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Images;
 use App\Entity\Users;
 use App\Entity\Works;
 use App\Form\UsersType;
@@ -36,21 +37,42 @@ class AdminController extends AbstractController
      */
     public function new(Request $request): Response
     {
-        // $work = new Works();
-        // $form = $this->createForm(WorksType::class, $work);
-        // $form->handleRequest($request);
+        $work = new Works();
+        $form = $this->createForm(WorksType::class, $work);
+        $form->handleRequest($request);
 
-        // if ($form->isSubmitted() && $form->isValid()) {
-        //     $entityManager = $this->getDoctrine()->getManager();
-        //     $entityManager->persist($work);
-        //     $entityManager->flush();
+        if ($form->isSubmitted() && $form->isValid()) {
+            $user = $this->getUser();
+            $work->setUsers($user);
 
-        //     return $this->redirectToRoute('works_index');
-        // }
+            // On récupère les images transmises
+            $images = $form->get('images')->getData();
+            // On boucle sur les images
+            foreach ($images as $image) {
+                // On génère un nouveau nom de fichier
+                $fichier = md5(uniqid()) . '.' . $image->guessExtension();
+                // On copie le fichier dans le dossier uploads
+                $image->move(
+                    $this->getParameter('upload_directory'),
+                    $fichier
+                );
+                // On crée l'image dans la base de données
+                $img = new Images();
+                $img->setName($fichier);
+                $work->addImage($img);
+            }
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($work);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('works_index');
+        }
+
 
         return $this->render('admin/works/new.html.twig', [
-            // 'work' => $work,
-            // 'form' => $form->createView(),
+            'work' => $work,
+            'form' => $form->createView()
         ]);
     }
 
@@ -71,6 +93,16 @@ class AdminController extends AbstractController
         return $this->render('admin/works/edit.html.twig', [
             'work' => $work,
             'form' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/{id}", name="works_show", methods={"GET"})
+     */
+    public function show(Works $work): Response
+    {
+        return $this->render('public/works/test.html.twig', [
+            'work' => $work,
         ]);
     }
 

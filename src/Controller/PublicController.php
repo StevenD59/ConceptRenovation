@@ -2,18 +2,20 @@
 
 namespace App\Controller;
 
+use App\Entity\Works;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class PublicController extends AbstractController
 {
     /**
-     * @Route("/public", name="public")
+     * @Route("/public/{id}", name="works_show", methods={"GET"})
      */
-    public function index()
+    public function show(Works $work): Response
     {
-        return $this->render('public/index.html.twig', [
-            'controller_name' => 'PublicController',
+        return $this->render('public/works/test.html.twig', [
+            'work' => $work,
         ]);
     }
 }
