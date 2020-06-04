@@ -14,7 +14,7 @@ class PublicController extends AbstractController
      */
     public function show(Works $work): Response
     {
-        return $this->render('public/works/test.html.twig', [
+        return $this->render('public/works/show.html.twig', [
             'work' => $work,
         ]);
     }
