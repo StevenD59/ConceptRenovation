@@ -26,8 +26,11 @@ class AdminController extends AbstractController
      */
     public function index(WorksRepository $worksRepository): Response
     {
+
+        $work = $worksRepository->findAll();
+
         return $this->render('admin/works/index.html.twig', [
-            // 'works' => $worksRepository->findAll(),
+            'work' => $work,
         ]);
     }
 
@@ -99,10 +102,12 @@ class AdminController extends AbstractController
     /**
      * @Route("/{id}", name="works_show", methods={"GET"})
      */
-    public function show(Works $work): Response
+    public function showAdmin(Works $work): Response
     {
-        return $this->render('public/works/test.html.twig', [
-            'work' => $work,
+        return $this->render('public/works/show.html.twig', [
+            'id' => $work->getId(),
+            'work' => $work
+            
         ]);
     }
 

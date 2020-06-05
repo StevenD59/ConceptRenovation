@@ -15,8 +15,11 @@
 				</tr>
 			</thead>
 			<tbody>
+
+
+			{% for works in work %}
 				<tr>
-					<th scope="row">Réalisations n°1</th>
+					<th scope="row">{{ works.title }}</th>
 					<!-- TABLEAU RESPONSIVE TELEPHONE -->
 					<td class="pt-3 d-md-none ">
 						<div class="d-flex justify-content-around">
@@ -28,25 +31,26 @@
 					<!-- TABLEAU TAILLE "NORMAL" -->
 					<td class="d-none d-md-block">
 						<div class="btn-group btn-group-toggle" data-toggle="buttons">
-							<label class="btn btn-secondary active">
-								<input type="radio" name="options" id="option1" autocomplete="off" checked>
-								Voir
-							</label>
-							<label class="btn btn-secondary">
-								<input type="radio" name="options" id="option2" autocomplete="off">
-								Modifier
-							</label>
-							<label class="btn btn-danger">
-								<input type="radio" name="options" id="option3" autocomplete="off">
-								Supprimer
-							</label>
-						</div>
+								<div>
+									<a class="btn btn-secondary" href="{{ path('works_show', {'id' : works.id} ) }}">Voir</a>
+								</div>
+									<div>
+										<a class="btn btn-secondary" href="#">Modifier</a>
+									</div>
+									<div>
+										{{ include('admin/works/_delete_form.html.twig') }}
+									</div>
+							</div>
 					</td>
 				</tr>
+			{% endfor %}
+
+
+
 			</tbody>
 		</table>
 
-		<button type="button" class="btn btn-light">Ajouter une réalisation</button>
+		<button type="button" class="btn btn-light"><a href="{{ path('works_new')}}">Ajouter une réalisation</a></button>
 
 	</div>
 {% endblock %}

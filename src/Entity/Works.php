@@ -63,7 +63,7 @@ class Works
     private $categories;
 
     /**
-     * @ORM\OneToMany(targetEntity=Images::class, mappedBy="works", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity=Images::class, mappedBy="works", orphanRemoval=true, cascade={"persist"})
      */
     private $images;
 

@@ -10,7 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class PublicController extends AbstractController
 {
     /**
-     * @Route("/public/{id}", name="works_show", methods={"GET"})
+     * @Route("/public/{id}", name="works_public_show", methods={"GET"})
      */
     public function show(Works $work): Response
     {
