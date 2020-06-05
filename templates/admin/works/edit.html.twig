@@ -5,33 +5,33 @@
 
 {% block body %}
 	<div class="col-12 col-xl-10 text-center">
-		<h1 class="mb-5">Modifier une réalisation</h1>
+		<h1 class="mb-5">Ajouter une réalisation</h1>
 		<div class="col-12 col-md-9 color_div mx-auto rounded p-2">
-			<form>
+			{{ form_start(form) }}
 				<div class="form-group row">
 					<label for="inputEmail3" class="col-sm-3 col-form-label mx-auto">Titre réalisation:</label>
 					<div class="col-sm-8 mx-auto">
-						<input type="text" class="form-control" id="inputEmail3" placeholder="">
+						{{ form_widget(form.title) }}
 					</div>
 				</div>
 				<div class="form-group row">
 					<div class="mx-auto">
 						<label for="exampleFormControlFile1">Télécharger une image</label>
 						<div class="col-12">
-							<input type="file" class="form-control-file" id="exampleFormControlFile1">
+							{{ form_widget(form.images)}}
 						</div>
 					</div>
 				</div>
 				<div class="form-group row">
 					<label for="description" class="col-sm-3 col-form-label mx-auto">Description:</label>
 					<div class="col-sm-8 mx-auto">
-						<textarea class="form-control" id="description" rows="3"></textarea>
+						{{ form_widget(form.description) }}
 					</div>
 				</div>
 
-				<button type="button" class="btn btn-light my-2">Modifier</button>
+				<button type="submiy" class="btn btn-light my-2">Ajouter</button>
 
-			</form>
+			{{ form_end(form) }}
 		</div>
 
 	</div>

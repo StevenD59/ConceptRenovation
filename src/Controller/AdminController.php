@@ -8,11 +8,13 @@ use App\Entity\Works;
 use App\Form\UsersType;
 use App\Form\WorksType;
 use App\Repository\WorksRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+
 
 
 /**
@@ -23,6 +25,7 @@ class AdminController extends AbstractController
 {
     /**
      * @Route("/liste", name="works_index", methods={"GET"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function index(WorksRepository $worksRepository): Response
     {
@@ -95,6 +98,7 @@ class AdminController extends AbstractController
 
         return $this->render('admin/works/edit.html.twig', [
             'work' => $work,
+            'id' => $work->getId(),
             'form' => $form->createView(),
         ]);
     }
@@ -141,27 +145,5 @@ class AdminController extends AbstractController
             'user' => $user,
             'form' => $form->createView(),
         ]);
-    }
-
-
-
-
-    // ---------------------------- CONNEXION ---------------------------------------------
-
-    /**
-     * @Route("/connexion", name="security_login")
-     */
-    public function login()
-    {
-        if ($this->getUser()) {
-            return $this->redirectToRoute('works_index');
-        }
-        return $this->render('admin/users/login.html.twig');
-    }
-    /**
-     * @Route("/logout", name="security_logout")
-     */
-    public function logout()
-    {
     }
 }
