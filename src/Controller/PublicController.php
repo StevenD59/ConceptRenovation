@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\Categories;
 use App\Entity\Works;
+use App\Repository\CategoriesRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -10,19 +12,16 @@ use Symfony\Component\Routing\Annotation\Route;
 class PublicController extends AbstractController
 {
 
-
-
-
     /**
-     * @Route("/public/accueil", name="accueil", methods={"GET"})
+     * @Route("/accueil", name="index", methods={"GET"})
      */
-    public function accueil(): Response
+    public function index(): Response
     {
         return $this->render('public/divers/accueil.html.twig');
     }
 
     /**
-     * @Route("/public/profil", name="profil", methods={"GET"})
+     * @Route("/profil", name="profil", methods={"GET"})
      */
     public function profil(): Response
     {
@@ -30,7 +29,7 @@ class PublicController extends AbstractController
     }
 
     /**
-     * @Route("/public/collaborateurs", name="collaborateurs", methods={"GET"})
+     * @Route("/collaborateurs", name="collaborateurs", methods={"GET"})
      */
     public function collaborateurs(): Response
     {
@@ -38,15 +37,29 @@ class PublicController extends AbstractController
     }
 
     /**
-     * @Route("/public/contact", name="contact", methods={"GET"})
+     * @Route("/contact", name="contact", methods={"GET"})
      */
     public function contact(): Response
     {
         return $this->render('public/divers/contact.html.twig');
     }
-
+    
     /**
-     * @Route("/public/devis", name="devis", methods={"GET"})
+     * @Route("/categories", name="categories", methods={"GET"})
+     */
+    public function categories(CategoriesRepository $categoriesRepository): Response
+    {
+
+        $categories = $categoriesRepository->findAll();
+
+        return $this->render('public/divers/categories.html.twig', [
+            'categories' => $categories
+        ]);
+    }
+
+    
+    /**
+     * @Route("/devis", name="devis", methods={"GET"})
      */
     public function devis(): Response
     {
@@ -54,7 +67,7 @@ class PublicController extends AbstractController
     }
 
     /**
-     * @Route("/public/{id}", name="works_public_show", methods={"GET"})
+     * @Route("/realisations/{id}", name="works_public_show", methods={"GET"})
      */
     public function show(Works $work): Response
     {

@@ -45,7 +45,7 @@ class Services
     private $activate;
 
     /**
-     * @ORM\ManyToOne(targetEntity=categories::class, inversedBy="services")
+     * @ORM\ManyToOne(targetEntity=Categories::class, inversedBy="services")
      * @ORM\JoinColumn(nullable=false)
      */
     private $categories;

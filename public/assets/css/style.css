@@ -16,7 +16,7 @@ html, body {
     min-height: 100%;
 }
 
-.page-categories{
+.page-categories {
     min-height: 69%;
 }
 
@@ -34,7 +34,7 @@ html, body {
 
 /* BACKGROUND COLOR */
 
-.backgroundNavbar, .backgroundTitle, .colorAccueilButton, .backgroundServices, .services, .backgroundFooter, .backgroundColorContact {
+.backgroundNavbar, .backgroundTitle, .colorAccueilButton, .backgroundServices, .services, .backgroundFooter, .backgroundColorContact, .bgCategories {
     background-color: rgb(19, 193, 246);
 }
 
@@ -87,10 +87,9 @@ html, body {
     max-width: 870px;
 }
 
-
 /* COULEUR LIEN MENU ADMIN */
 
-.lien{
+.lien {
     color: black;
 }
 
@@ -135,8 +134,7 @@ html, body {
     .marginTopIpad {
         margin-top: 150px;
     }
-
-    .mtCategories{
+    .mtCategories {
         margin: 20px;
     }
 }
@@ -151,28 +149,28 @@ html, body {
         display: flex;
         justify-content: end;
     }
-
-    .mtCategories{
+    .mtCategories {
         padding-top: 115px;
     }
 }
 
 /* CSS PARTIE ADMINISTRATEUR */
 
-.backgroundMenu{
+.backgroundMenu {
     background-color: darkgrey;
     min-height: 602px;
     border-top: black 1px solid;
 }
 
-.liste{
-    list-style-type:none;
+.liste {
+    list-style-type: none;
 }
 
-.colorIconTab{
-    color: rgb(33, 37, 41);;
+.colorIconTab {
+    color: rgb(33, 37, 41);
+    ;
 }
 
-.color_div{
+.color_div {
     background-color: darkgray;
 }

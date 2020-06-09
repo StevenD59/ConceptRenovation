@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\QuotesRepository;
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -58,10 +59,16 @@ class Quotes
     private $activate;
 
     /**
-     * @ORM\ManyToOne(targetEntity=services::class, inversedBy="quotes")
+     * @ORM\ManyToOne(targetEntity=Services::class, inversedBy="quotes")
      * @ORM\JoinColumn(nullable=false)
      */
     private $services;
+
+    public function __construct()
+    {
+        $this->createdAt = new DateTime();
+        $this->activate = 1;
+    }
 
     public function getId(): ?int
     {
