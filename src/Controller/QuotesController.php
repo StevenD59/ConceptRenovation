@@ -7,8 +7,11 @@ use App\Form\QuotesType;
 use App\Repository\QuotesRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Address;
 use Symfony\Component\Routing\Annotation\Route;
 
 
@@ -28,14 +31,23 @@ class QuotesController extends AbstractController
     /**
      * @Route("/devis/new", name="devis", methods={"GET","POST"})
      */
-    public function newQuotes(Request $request): Response
+    public function newQuotes(Request $request, MailerInterface $mailer): Response
     {
         $quote = new Quotes();
         $form = $this->createForm(QuotesType::class, $quote);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->addFlash('success', 'Votre email à bien était envoyer et on vous répondra dans les meilleurs délais!');
+            $mail = $form->getData();
+            $email = (new TemplatedEmail())
+                ->from(new Address('zetlaas@gmail.com', 'Concept Rénovation'))
+                ->to('zetlaas@gmail.com')
+                ->subject('Devis')
+                ->htmlTemplate('mail.html.twig')
+                ->context([
+                    'mail' => $mail
+                ]);
+            $mailer->send($email);
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($quote);
             $entityManager->flush();
@@ -84,7 +96,7 @@ class QuotesController extends AbstractController
      */
     public function delete(Request $request, Quotes $quote): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$quote->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $quote->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($quote);
             $entityManager->flush();
