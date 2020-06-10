@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Categories;
 use App\Entity\Works;
 use App\Repository\CategoriesRepository;
+use App\Repository\ImagesRepository;
 use App\Repository\WorksRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -61,14 +62,15 @@ class PublicController extends AbstractController
     /**
      * @Route("/categories/{id}", name="categories_show", methods={"GET"})
      */
-    public function categoriesShow(Categories $category): Response
+    public function categoriesShow(Categories $category, ImagesRepository $images): Response
     {
 
         $works = $category->getWorks();
 
         return $this->render('public/works/show.html.twig', [
             'category' => $category,
-            'work' => $works
+            'work' => $works,
+            'images' => $images->findAll()
         ]);
     }
 

@@ -6,6 +6,7 @@ use App\Entity\Quotes;
 use App\Form\QuotesType;
 use App\Repository\QuotesRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -14,11 +15,12 @@ use Symfony\Component\Routing\Annotation\Route;
 class QuotesController extends AbstractController
 {
     /**
-     * @Route("/", name="quotes_index", methods={"GET"})
+     * @Route("admin/devis/index", name="quotes_index", methods={"GET"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function index(QuotesRepository $quotesRepository): Response
     {
-        return $this->render('quotes/index.html.twig', [
+        return $this->render('admin/quotes/index.html.twig', [
             'quotes' => $quotesRepository->findAll(),
         ]);
     }
@@ -33,11 +35,12 @@ class QuotesController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $this->addFlash('success', 'Votre email à bien était envoyer et on vous répondra dans les meilleurs délais!');
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($quote);
             $entityManager->flush();
 
-            return $this->redirectToRoute('quotes_index');
+            return $this->redirectToRoute('devis');
         }
 
         return $this->render('public/divers/devis.html.twig', [
@@ -46,15 +49,15 @@ class QuotesController extends AbstractController
         ]);
     }
 
-    // /**
-    //  * @Route("/{id}", name="quotes_show", methods={"GET"})
-    //  */
-    // public function show(Quotes $quote): Response
-    // {
-    //     return $this->render('quotes/show.html.twig', [
-    //         'quote' => $quote,
-    //     ]);
-    // }
+    /**
+     * @Route("admin/devis/{id}", name="quotes_show", methods={"GET"})
+     */
+    public function show(Quotes $quote): Response
+    {
+        return $this->render('admin/quotes/show.html.twig', [
+            'quote' => $quote,
+        ]);
+    }
 
     /**
      * @Route("/{id}/edit", name="quotes_edit", methods={"GET","POST"})

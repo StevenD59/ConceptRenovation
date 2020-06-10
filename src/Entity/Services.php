@@ -167,4 +167,10 @@ class Services
 
         return $this;
     }
+
+    public function __toString()
+    {
+        return (string) $this->getName();
+    }
+
 }
