@@ -64,9 +64,12 @@ class Quotes
      */
     private $services;
 
+    private $categories;
+
     public function __construct()
     {
         $this->createdAt = new DateTime();
+        $this->isRead = 0;
         $this->activate = 1;
     }
 
@@ -179,6 +182,29 @@ class Quotes
     public function setServices(?services $services): self
     {
         $this->services = $services;
+
+        return $this;
+    }
+
+    
+
+
+    /**
+     * Get the value of categories
+     */ 
+    public function getCategories()
+    {
+        return $this->categories;
+    }
+
+    /**
+     * Set the value of categories
+     *
+     * @return  self
+     */ 
+    public function setCategories($categories)
+    {
+        $this->categories = $categories;
 
         return $this;
     }

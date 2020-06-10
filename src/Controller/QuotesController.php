@@ -24,7 +24,7 @@ class QuotesController extends AbstractController
     }
 
     /**
-     * @Route("/devis/new", name="devis_new", methods={"GET","POST"})
+     * @Route("/devis/new", name="devis", methods={"GET","POST"})
      */
     public function newQuotes(Request $request): Response
     {
@@ -46,15 +46,15 @@ class QuotesController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/{id}", name="quotes_show", methods={"GET"})
-     */
-    public function show(Quotes $quote): Response
-    {
-        return $this->render('quotes/show.html.twig', [
-            'quote' => $quote,
-        ]);
-    }
+    // /**
+    //  * @Route("/{id}", name="quotes_show", methods={"GET"})
+    //  */
+    // public function show(Quotes $quote): Response
+    // {
+    //     return $this->render('quotes/show.html.twig', [
+    //         'quote' => $quote,
+    //     ]);
+    // }
 
     /**
      * @Route("/{id}/edit", name="quotes_edit", methods={"GET","POST"})

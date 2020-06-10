@@ -72,13 +72,6 @@ class PublicController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/devis", name="devis", methods={"GET"})
-     */
-    public function devis(): Response
-    {
-        return $this->render('public/divers/devis.html.twig');
-    }
 
     /**
      * @Route("/realisations/{id}", name="works_public_show", methods={"GET"})
