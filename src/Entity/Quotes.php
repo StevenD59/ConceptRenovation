@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\QuotesRepository;
+use Symfony\Component\Validator\Constraints as Assert;
 use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -20,21 +21,26 @@ class Quotes
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
+     * )
      */
     private $name;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
      */
     private $email;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
      */
     private $phoneNumber;
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank
      */
     private $message;
 
@@ -186,12 +192,12 @@ class Quotes
         return $this;
     }
 
-    
+
 
 
     /**
      * Get the value of categories
-     */ 
+     */
     public function getCategories()
     {
         return $this->categories;
@@ -201,7 +207,7 @@ class Quotes
      * Set the value of categories
      *
      * @return  self
-     */ 
+     */
     public function setCategories($categories)
     {
         $this->categories = $categories;

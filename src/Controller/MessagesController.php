@@ -34,6 +34,7 @@ class MessagesController extends AbstractController
         $message = new Messages();
         $form = $this->createForm(MessagesType::class, $message);
         $form->handleRequest($request);
+        $errors = [];
 
         if ($form->isSubmitted() && $form->isValid()) {
             $mail = $form->getData();
@@ -50,8 +51,9 @@ class MessagesController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($message);
             $entityManager->flush();
+            $this->addFlash('success', 'Votre message à bien était envoyé.');
 
-            return $this->redirectToRoute('accueil');
+            return $this->redirectToRoute('messages_new');
         }
 
 
