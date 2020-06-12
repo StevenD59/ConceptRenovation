@@ -76,18 +76,6 @@ class PublicController extends AbstractController
 
 
     /**
-     * @Route("/realisations/{id}", name="works_public_show", methods={"GET"})
-     */
-    public function show(Works $work): Response
-    {
-        return $this->render('public/works/show.html.twig', [
-            'work' => $work,
-        ]);
-    }
-
-
-
-    /**
      * @Route("/connexion", name="security_login")
      */
     public function login()

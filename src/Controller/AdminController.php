@@ -104,14 +104,13 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="works_show", methods={"GET"})
+     * @Route("/realisation/{id}", name="works_show", methods={"GET"})
      */
     public function showAdmin(Works $work): Response
     {
-        return $this->render('public/works/show.html.twig', [
+        return $this->render('admin/works/show.html.twig', [
             'id' => $work->getId(),
             'work' => $work
-            
         ]);
     }
 

@@ -1,8 +1,32 @@
-{% extends 'admin/index.html.twig' %}
+{% extends 'public/index.html.twig' %}
 
 {% block title %}
 {% endblock %}
 
 {% block body %}
-	
+	<div class="text-center">
+			<h5>{{ work.title }}</h5>
+			
+		</div>
+
+
+		<!-- PRESENTATION REALISATIONS MINIMUM IPAD -->
+
+
+		<div class="d-none d-md-block text-center">
+			<img src="{{ asset('assets/img/carousel1.jpg') }}" alt="" class="grde-img sizeBigImageRealisation img-fluid">
+			<div class="row mt-2 mb-2">
+				{% for image in work.images %}
+					<div class="col-md-6 col-xl-3 my-5">
+						<img src="{{ asset('assets/img/' ~ image.name ) }}" alt="" class="img-fluid sizeImageRealisation monImage">
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+
+
+		<div>
+			<p class="text-center my-3">{{ work.description }}
+			</p>
+		</div>
 {% endblock %}

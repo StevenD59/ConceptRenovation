@@ -43,7 +43,7 @@ class QuotesController extends AbstractController
                 ->from(new Address('zetlaas@gmail.com', 'Concept Rénovation'))
                 ->to('zetlaas@gmail.com')
                 ->subject('Devis')
-                ->htmlTemplate('mail.html.twig')
+                ->htmlTemplate('quotes_mail.html.twig')
                 ->context([
                     'mail' => $mail
                 ]);

@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\MessagesRepository;
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -68,10 +69,17 @@ class Messages
     private $activate;
 
     /**
-     * @ORM\ManyToOne(targetEntity=users::class, inversedBy="messages")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\ManyToOne(targetEntity=Users::class, inversedBy="messages")
+     * @ORM\JoinColumn(nullable=true)
      */
     private $users;
+
+    public function __construct()
+    {
+        $this->createdAt = new DateTime();
+        $this->isRead = 0;
+        $this->activate = 1;
+    }
 
     public function getId(): ?int
     {
@@ -102,12 +110,12 @@ class Messages
         return $this;
     }
 
-    public function getPhoneNumber(): ?int
+    public function getPhoneNumber(): ?string
     {
         return $this->phoneNumber;
     }
 
-    public function setPhoneNumber(int $phoneNumber): self
+    public function setPhoneNumber(string $phoneNumber): self
     {
         $this->phoneNumber = $phoneNumber;
 
