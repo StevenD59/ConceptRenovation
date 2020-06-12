@@ -1,5 +1,7 @@
 {% extends "public/index.html.twig" %}
 
+{% block title %}Concept Rénovation - Accueil{% endblock %}
+
 {% block body %}
 
 	<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
@@ -37,7 +39,7 @@
 
 			<div class="row">
 				<div class="col-12 col-md-6">
-					<a class="btn colorAccueilButton sizeAccueilButtonMarginTop col-12" href="{{ path('contact') }}" role="button">Contactez-nous</a>
+					<a class="btn colorAccueilButton sizeAccueilButtonMarginTop col-12" href="{{ path('messages_new') }}" role="button">Contactez-nous</a>
 				</div>
 				<div class="col-12 col-md-6 mtButton">
 					<a class="btn colorAccueilButton sizeAccueilButtonMarginTop col-12" href="{{ path('devis') }}" role="button">Demander un
@@ -50,6 +52,70 @@
 
 	<div>
 		<h4 class="backgroundServices text-center mt-3">Nos services</h4>
+	</div>
+
+
+	<div class="accordion d-md-none mb-2" id="accordionExample">
+		<div class="card">
+			<div class="card-header text-center" id="headingOne">
+				<h2 class="mb-0">
+					<button class="btn" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+						Travaux extérieurs
+					</button>
+				</h2>
+			</div>
+
+			<div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+				<div class="card-body pb-0">
+					<ul class="p-0 text-center">
+						<li class="liContent">- Aménagement, isolation des combles, modification de charpente</li>
+						<li class="liContent">- Pose de porte, fenêtre, vélux</li>
+						<li class="liContent">- Pose de Fer (mur porteur)</li>
+						<li class="liContent">- Placo, cloisons, faux plafond, plafond suspendus</li>
+						<li class="liContent">- Isolation thermique phonique coupe-feu</li>
+						<li class="liContent">- Enduits de finition, enduisage/ratissage</li>
+						<li class="liContent">- Pose de parquet, revêtement plastique, faïence, carrelage</li>
+						<li class="liContent">- Menuiserie intérieure</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="card">
+			<div class="card-header text-center" id="headingTwo">
+				<h2 class="mb-0">
+					<button class="btn collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+						Travaux intérieurs
+					</button>
+				</h2>
+			</div>
+			<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+				<div class="card-body pb-0">
+					<ul class="p-0 text-center">
+						<li class="liContent">- Extension/Création (maçonnerie)</li>
+						<li class="liContent">- Dalle</li>
+						<li class="liContent">- Tout à l'égout</li>
+						<li class="liContent">- Fondation</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="card">
+			<div class="card-header text-center" id="headingThree">
+				<h2 class="mb-0">
+					<button class="btn collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+						Travaux électriques
+					</button>
+				</h2>
+			</div>
+			<div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+				<div class="card-body pb-0">
+					<ul class="p-0 text-center">
+						<li class="liContent">- Modification/Rajout/Remplacement</li>
+						<li class="liContent">- Installation encastrée ou sous moulure</li>
+					</ul>
+				</div>
+			</div>
+		</div>
 	</div>
 
 	<div class="row text-center">
@@ -93,66 +159,5 @@
 		</div>
 	</div>
 
-	<div class="accordion d-md-none mb-2" id="accordionExample">
-		<div class="card">
-			<div class="card-header" id="headingOne">
-				<h2 class="mb-0">
-					<button class="btn" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-						Travaux extérieurs
-					</button>
-				</h2>
-			</div>
-
-			<div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
-				<div class="card-body pb-0">
-					<ul class="p-0 text-center">
-						<li class="liContent">- Aménagement, isolation des combles, modification de charpente</li>
-						<li class="liContent">- Pose de porte, fenêtre, vélux</li>
-						<li class="liContent">- Pose de Fer (mur porteur)</li>
-						<li class="liContent">- Placo, cloisons, faux plafond, plafond suspendus</li>
-						<li class="liContent">- Isolation thermique phonique coupe-feu</li>
-						<li class="liContent">- Enduits de finition, enduisage/ratissage</li>
-						<li class="liContent">- Pose de parquet, revêtement plastique, faïence, carrelage</li>
-						<li class="liContent">- Menuiserie intérieure</li>
-					</ul>
-				</div>
-			</div>
-		</div>
-		<div class="card">
-			<div class="card-header" id="headingTwo">
-				<h2 class="mb-0">
-					<button class="btn collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-						Travaux intérieurs
-					</button>
-				</h2>
-			</div>
-			<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-				<div class="card-body pb-0">
-					<ul class="p-0 text-center">
-						<li class="liContent">- Extension/Création (maçonnerie)</li>
-						<li class="liContent">- Dalle</li>
-						<li class="liContent">- Tout à l'égout</li>
-						<li class="liContent">- Fondation</li>
-					</ul>
-				</div>
-			</div>
-		</div>
-		<div class="card">
-			<div class="card-header" id="headingThree">
-				<h2 class="mb-0">
-					<button class="btn collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-						Travaux électriques
-					</button>
-				</h2>
-			</div>
-			<div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
-				<div class="card-body pb-0">
-					<ul class="p-0 text-center">
-						<li class="liContent">- Modification/Rajout/Remplacement</li>
-						<li class="liContent">- Installation encastrée ou sous moulure</li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</div>
+	
 {% endblock %}

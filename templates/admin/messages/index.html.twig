@@ -1,0 +1,30 @@
+{% extends 'admin/index.html.twig' %}
+
+{% block title %}Concept Rénovation - Accueil{% endblock %}
+
+{% block body %}
+	<div class="col-12 col-md-10 text-center">
+		<h1 class="mb-5">Liste des messages</h1>
+
+		<table class="table">
+			<thead>
+				<tr>
+					<th class="col-6">Nom</th>
+					<th class="col-6">Types</th>
+				</tr>
+			</thead>-
+			<tbody>
+
+
+				{% for message in messages %}
+					<tr>
+						<th scope="row">{{ message.name }}</th>
+						<th scope="row">{{ message.type }}</th>
+					</tr>
+				{% endfor %}
+
+
+			</tbody>
+		</table>
+	</div>
+{% endblock %}

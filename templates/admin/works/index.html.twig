@@ -1,7 +1,6 @@
 {% extends 'admin/index.html.twig' %}
 
-{% block title %}Works index
-{% endblock %}
+{% block title %}Concept Rénovations - Liste des réalisations{% endblock %}
 
 {% block body %}
 	<div class="col-12 col-md-10 text-center">
@@ -20,15 +19,15 @@
 				{% for works in work %}
 					<tr>
 						<th scope="row">{{ works.title }}</th>
-						<!-- TABLEAU RESPONSIVE TELEPHONE -->
+						
 						<td class="pt-3 d-md-none ">
 							<div class="d-flex justify-content-around">
-								<a class="fas fa-search fa-lg colorIconTab" href="#"></a>
-								<a class="fas fa-edit fa-lg colorIconTab" href="#"></a>
+								<a class="fas fa-search fa-lg colorIconTab" href="{{ path('works_show', {'id' : works.id} ) }}"></a>
+								<a class="fas fa-edit fa-lg colorIconTab" href="{{ path('works_edit', {'id' : works.id} ) }}"></a>
 								<a class="fas fa-trash-alt fa-lg colorIconTab" href="#"></a>
 							</div>
 						</td>
-						<!-- TABLEAU TAILLE "NORMAL" -->
+						
 						<td class="d-none d-md-block">
 							<div class="btn-group btn-group-toggle" data-toggle="buttons">
 								<div>

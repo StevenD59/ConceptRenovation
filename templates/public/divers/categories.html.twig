@@ -1,12 +1,14 @@
 {% extends "public/index.html.twig" %}
 
+{% block title %}Concept Rénovation - Catégories{% endblock %}
+
 {% block body %}
 	<div class="row my-5">
 		{% for category in categories %}
 			<div class="col-12 col-xl-4">
-				<img src="{{ asset('assets/img/amenagement.jpeg') }}" alt="" class="img-fluid">
+				<a href="{{ path('categories_show', {'id' : category.id} ) }}"><img src="{{ asset('assets/img/amenagement.jpeg') }}" alt="" class="img-fluid"></a>
 				<h5 class="text-center bgCategories">
-					<a href="{{ path('categories_show', {'id' : category.id} ) }}">Travaux extérieurs</a>
+					<a href="{{ path('categories_show', {'id' : category.id} ) }}" class="categories_link">{{ category.name }}</a>
 				</h5>
 			</div>
 		{% endfor %}

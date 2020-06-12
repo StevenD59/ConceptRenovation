@@ -13,23 +13,21 @@ use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Address;
 use Symfony\Component\Routing\Annotation\Route;
 
-/**
- * @Route("/messages")
- */
+
 class MessagesController extends AbstractController
 {
     /**
-     * @Route("/", name="messages_index", methods={"GET"})
+     * @Route("/admin/message/index", name="messages_index", methods={"GET"})
      */
     public function index(MessagesRepository $messagesRepository): Response
     {
-        return $this->render('messages/index.html.twig', [
+        return $this->render('admin/messages/index.html.twig', [
             'messages' => $messagesRepository->findAll(),
         ]);
     }
 
     /**
-     * @Route("/new", name="messages_new", methods={"GET","POST"})
+     * @Route("message/new", name="messages_new", methods={"GET","POST"})
      */
     public function new(Request $request, MailerInterface $mailer): Response
     {
@@ -63,15 +61,15 @@ class MessagesController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/{id}", name="messages_show", methods={"GET"})
-     */
-    public function show(Messages $message): Response
-    {
-        return $this->render('messages/show.html.twig', [
-            'message' => $message,
-        ]);
-    }
+    // /**
+    //  * @Route("/{id}", name="messages_show", methods={"GET"})
+    //  */
+    // public function show(Messages $message): Response
+    // {
+    //     return $this->render('messages/show.html.twig', [
+    //         'message' => $message,
+    //     ]);
+    // }
 
     /**
      * @Route("/{id}/edit", name="messages_edit", methods={"GET","POST"})

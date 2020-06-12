@@ -89,7 +89,7 @@ html, body {
 
 /* COULEUR LIEN MENU ADMIN */
 
-.lien {
+.lien, .categories_link {
     color: black;
 }
 
