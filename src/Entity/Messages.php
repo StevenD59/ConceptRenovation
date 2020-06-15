@@ -20,7 +20,6 @@ class Messages
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
      * @Assert\Regex(
      *     pattern="/\d/",
      *     match=false,
@@ -32,14 +31,18 @@ class Messages
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\Email(
-     *     message = "The email is not a valid email."
+     *     message = "Veuillez entrer un email valide."
      * )
      */
     private $email;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank
+     * @Assert\Regex(
+     *     pattern="#^(0|\+33){1} {0,1}(6|7){1}(( |.){0,1}[0-9]{2}){4}#",
+     *     match=false,
+     *     message="Le nom ne peut pas contenir des caractères spéciaux."
+     * )
      */
     private $phoneNumber;
 
