@@ -10,6 +10,7 @@ use App\Form\WorksType;
 use App\Repository\WorksRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -55,6 +56,15 @@ class AdminController extends AbstractController
             $images = $form->get('images')->getData();
             // On boucle sur les images
             foreach ($images as $image) {
+
+                if ($image) {
+                    $mimeType = $image->getMimeType();
+                    if ($mimeType !== 'image/jpeg' && $mimeType !==  'image/png' && $mimeType !== 'image/tiff' && $mimeType !==  'image/webp' && $mimeType !== 'image/jpg') {
+                        return new JsonResponse($mimeType !== 'image/jpeg');
+                    }
+                }
+
+
                 // On génère un nouveau nom de fichier
                 $fichier = md5(uniqid()) . '.' . $image->guessExtension();
                 // On copie le fichier dans le dossier uploads
@@ -71,6 +81,7 @@ class AdminController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($work);
             $entityManager->flush();
+            $this->addFlash('success', 'Votre bien à bien était ajouté.');
 
             return $this->redirectToRoute('works_index');
         }

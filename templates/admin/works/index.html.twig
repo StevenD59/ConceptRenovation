@@ -1,10 +1,17 @@
 {% extends 'admin/index.html.twig' %}
 
-{% block title %}Concept Rénovations - Liste des réalisations{% endblock %}
+{% block title %}Concept Rénovations - Liste des réalisations
+{% endblock %}
 
 {% block body %}
 	<div class="col-12 col-md-10 text-center">
 		<h1 class="mb-5">Liste des réalisations</h1>
+
+		{% for message in app.flashes('success') %}
+			<div class="alert alert-success">
+				{{ message }}
+			</div>
+		{% endfor %}
 
 		<table class="table">
 			<thead>
@@ -19,7 +26,7 @@
 				{% for works in work %}
 					<tr>
 						<th scope="row">{{ works.title }}</th>
-						
+
 						<td class="pt-3 d-md-none ">
 							<div class="d-flex justify-content-around">
 								<a class="fas fa-search fa-lg colorIconTab" href="{{ path('works_show', {'id' : works.id} ) }}"></a>
@@ -27,7 +34,7 @@
 								<a class="fas fa-trash-alt fa-lg colorIconTab" href="#"></a>
 							</div>
 						</td>
-						
+
 						<td class="d-none d-md-block">
 							<div class="btn-group btn-group-toggle" data-toggle="buttons">
 								<div>

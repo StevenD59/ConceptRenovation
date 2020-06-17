@@ -51,6 +51,7 @@ class QuotesController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($quote);
             $entityManager->flush();
+            $this->addFlash('success', 'Votre devis à bien était envoyé.');
 
             return $this->redirectToRoute('devis');
         }

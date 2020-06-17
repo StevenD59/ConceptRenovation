@@ -12,6 +12,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\File;
 
 class WorksType extends AbstractType
 {
@@ -21,10 +22,9 @@ class WorksType extends AbstractType
             ->add('title', TextType::class)
             ->add('description', TextareaType::class)
             ->add('images', FileType::class,[
-                'label' => false,
                 'multiple' => true,
                 'mapped' => false,
-                'required' => false
+                'required' => false,
             ])
             ->add('categories', EntityType::class, [
                 'class' => Categories::class,
