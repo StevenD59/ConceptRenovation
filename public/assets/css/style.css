@@ -2,6 +2,14 @@
     height: 120px;
 }
 
+.marginCategories{
+    margin-top: 100px;
+    margin-bottom: 98px;
+}
+
+
+
+
 /* CONTENT MINIMUM SIZE */
 
 * {
@@ -9,10 +17,6 @@
 }
 
 html, body {
-    height: 100%;
-}
-
-.page-wrap {
     min-height: 100%;
 }
 
@@ -114,6 +118,11 @@ html, body {
         margin-top: 10px;
         margin-bottom: 10px;
     }
+
+    .marginContact{
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
 }
 
 /* TAILLE ECRAN IPAD */
@@ -137,6 +146,22 @@ html, body {
     .mtCategories {
         margin: 20px;
     }
+
+    .marginContact{
+        margin-top: 159px;
+        margin-bottom: 159px;
+    }
+
+    .marginProfil{
+        margin-top: 88px;
+        margin-bottom: 88px;
+    }
+
+    .marginDevis{
+        margin-top: 81px;
+        margin-bottom: 81px;
+    }
+    
 }
 
 /* TAILLE ECRAN GRAND */
@@ -151,6 +176,11 @@ html, body {
     }
     .mtCategories {
         padding-top: 115px;
+    }
+
+    .marginContact{
+        margin-top: 20px;
+        margin-bottom: 20px;
     }
 }
 

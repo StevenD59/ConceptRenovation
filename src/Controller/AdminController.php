@@ -47,24 +47,23 @@ class AdminController extends AbstractController
         $work = new Works();
         $form = $this->createForm(WorksType::class, $work);
         $form->handleRequest($request);
+        $error = 'Le type du fichier est invalide';
 
         if ($form->isSubmitted() && $form->isValid()) {
             $user = $this->getUser();
             $work->setUsers($user);
+            
 
             // On récupère les images transmises
             $images = $form->get('images')->getData();
             // On boucle sur les images
             foreach ($images as $image) {
-
                 if ($image) {
                     $mimeType = $image->getMimeType();
                     if ($mimeType !== 'image/jpeg' && $mimeType !==  'image/png' && $mimeType !== 'image/tiff' && $mimeType !==  'image/webp' && $mimeType !== 'image/jpg') {
-                        return new JsonResponse($mimeType !== 'image/jpeg');
+                            $error;
                     }
                 }
-
-
                 // On génère un nouveau nom de fichier
                 $fichier = md5(uniqid()) . '.' . $image->guessExtension();
                 // On copie le fichier dans le dossier uploads
@@ -89,7 +88,8 @@ class AdminController extends AbstractController
 
         return $this->render('admin/works/new.html.twig', [
             'work' => $work,
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'errors' => $error
         ]);
     }
 

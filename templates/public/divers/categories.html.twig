@@ -3,7 +3,7 @@
 {% block title %}Concept Rénovation - Catégories{% endblock %}
 
 {% block body %}
-	<div class="row my-5">
+	<div class="row marginCategories">
 		{% for category in categories %}
 			<div class="col-12 col-xl-4">
 				<a href="{{ path('categories_show', {'id' : category.id} ) }}"><img src="{{ asset('assets/img/amenagement.jpeg') }}" alt="" class="img-fluid"></a>

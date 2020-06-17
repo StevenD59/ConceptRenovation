@@ -5,11 +5,11 @@
 
 {% block body %}
 
-	<h4 class="backgroundTitle mt-2 text-center">Nos réalisations</h4>
+	<h3 class="backgroundTitle mt-2 text-center">Nos réalisations</h3>
 
 	{% for works in work %}
 		<div class="text-center">
-			<h5>{{ works.title }}</h5>
+			<h5 class="backgroundTitle">{{ works.title }}</h5>
 			
 		</div>
 
@@ -30,8 +30,8 @@
 
 
 		<div>
-			<p class="text-center my-3">{{ works.description }}
-			</p>
+			<h4 class="text-center my-3">{{ works.description }}
+			</h4>
 		</div>
 
 	{% endfor %}
