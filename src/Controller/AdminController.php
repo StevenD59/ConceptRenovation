@@ -41,18 +41,19 @@ class AdminController extends AbstractController
 
     /**
      * @Route("/new", name="works_new", methods={"GET","POST"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function new(Request $request): Response
     {
         $work = new Works();
         $form = $this->createForm(WorksType::class, $work);
         $form->handleRequest($request);
-        $error = 'Le type du fichier est invalide';
+        $error = '';
 
         if ($form->isSubmitted() && $form->isValid()) {
             $user = $this->getUser();
             $work->setUsers($user);
-            
+
 
             // On récupère les images transmises
             $images = $form->get('images')->getData();
@@ -61,7 +62,10 @@ class AdminController extends AbstractController
                 if ($image) {
                     $mimeType = $image->getMimeType();
                     if ($mimeType !== 'image/jpeg' && $mimeType !==  'image/png' && $mimeType !== 'image/tiff' && $mimeType !==  'image/webp' && $mimeType !== 'image/jpg') {
-                            $error;
+                        {
+                            $this->addFlash('alerte', 'Veuillez choisir des images valides.(JPEG, JPG, PNG)');
+                            return $this->redirectToRoute('works_new');
+                        }
                     }
                 }
                 // On génère un nouveau nom de fichier
@@ -95,6 +99,7 @@ class AdminController extends AbstractController
 
     /**
      * @Route("/{id}/edit", name="works_edit", methods={"GET","POST"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function edit(Request $request, Works $work): Response
     {
@@ -116,6 +121,7 @@ class AdminController extends AbstractController
 
     /**
      * @Route("/realisation/{id}", name="works_show", methods={"GET"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function showAdmin(Works $work): Response
     {
@@ -133,6 +139,7 @@ class AdminController extends AbstractController
 
     /**
      * @Route("/new_user", name="users_new", methods={"GET","POST"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function newUsers(Request $request, UserPasswordEncoderInterface $encoder): Response
     {
