@@ -15,10 +15,36 @@ $('.monImage').on('click', function () {
 
 
 //Permet l'affichage du nom de l'image dans l'input
-$(".custom-file-input").on("change", function(event) {
+$(".custom-file-input").on("change", function (event) {
     let inputFile = event.currentTarget;
     $(inputFile)
         .parent()
         .find(".custom-file-label")
         .html(inputFile.files[0].name);
+});
+
+//Champs imbriqués
+
+var $categories = $('#categories');
+// When sport gets selected ...
+$categories.change(function () {
+    // ... retrieve the corresponding form.
+    var $form = $(this).closest('form');
+    // Simulate form data, but only include the selected sport value.
+    var data = {};
+    data[$categories.attr('name')] = $categories.val();
+    // Submit data via AJAX to the form's action path.
+    $.ajax({
+        url: $form.attr('actiton'),
+        type: $form.attr('mathod'),
+        data: data,
+        success: function (html) {
+            // Replace current position field ...
+            $('#categories').replaceWith(
+                // ... with the returned one from the AJAX response.
+                $(html).find('#services')
+            );
+            // Position field now displays the appropriate positions.
+        }
+    });
 });
