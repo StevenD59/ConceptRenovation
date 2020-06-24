@@ -1,16 +1,46 @@
 {% extends 'public/index.html.twig' %}
 
-{% block title %}Concept Rénovation - Réalisations{% endblock %}
+{% block title %}Concept Rénovation - Réalisations
+{% endblock %}
 
 
 {% block body %}
 
 	<h3 class="backgroundTitle mt-2 text-center">Nos réalisations</h3>
 
+
+	<div class="accordion d-md-none mb-2" id="accordionExample">
+		{% for works in work %}
+			<div class="card">
+				<div class="card-header text-center" id="headingOne">
+					<h2 class="mb-0">
+						<button class="btn" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+							{{ works.title }}
+						</button>
+					</h2>
+				</div>
+
+				<div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+					<div class="card-body pb-0">
+						<ul class="p-0 text-center">
+							{% for image in works.images %}
+								<div class="col-12">
+									<img src="{{ asset('assets/img/' ~ image.name ) }}" alt="" class="img-fluid mb-3">
+								</div>
+							{% endfor %}
+							{{ works.description }}
+						</ul>
+					</div>
+				</div>
+			</div>
+		{% endfor %}
+	</div>
+
+
 	{% for works in work %}
-		<div class="text-center">
+		<div class="text-center d-none d-md-block">
 			<h5 class="backgroundTitle">{{ works.title }}</h5>
-			
+
 		</div>
 
 
@@ -30,7 +60,7 @@
 
 
 		<div>
-			<h4 class="text-center my-3">{{ works.description }}
+			<h4 class="text-center my-3 d-none d-md-block">{{ works.description }}
 			</h4>
 		</div>
 

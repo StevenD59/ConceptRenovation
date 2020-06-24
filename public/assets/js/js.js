@@ -35,12 +35,12 @@ $categories.change(function () {
     data[$categories.attr('name')] = $categories.val();
     // Submit data via AJAX to the form's action path.
     $.ajax({
-        url: $form.attr('actiton'),
-        type: $form.attr('mathod'),
+        url: $form.attr('action'),
+        type: $form.attr('method'),
         data: data,
         success: function (html) {
             // Replace current position field ...
-            $('#categories').replaceWith(
+            $('#services').replaceWith(
                 // ... with the returned one from the AJAX response.
                 $(html).find('#services')
             );
