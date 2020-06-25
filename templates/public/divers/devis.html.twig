@@ -53,7 +53,7 @@
 
 		<div class="form-check col-12 col-xl-8 mx-auto d-flex justify-content-center">
 			<div class="col-2">
-				<input class="form-check-input my-2 mx-0" type="checkbox" value="false" id="defaultCheck1">
+				<input class="form-check-input my-2 mx-0" name="check" type="checkbox" value="" id="defaultCheck1">
 			</div>
 			<div class="col-10">
 				<label class="form-check-label" for="defaultCheck1">
@@ -61,8 +61,18 @@
 					<a href="{{ path('politique')}}">politique de confidentialités</a>
 				</label>
 			</div>
+
 		</div>
 
+		<div class="col-12">
+			<div class="form-group row form-group row col-12 col-xl-8 mx-auto d-flex justify-content-center">
+				{% for message in app.flashes('check') %}
+					<div class="alert alert-danger">
+						{{ message }}
+					</div>
+				{% endfor %}
+			</div>
+		</div>
 
 		<div class="col-12 d-flex justify-content-center mx-auto">
 			<button class="btn bg-white">Envoyer</button>

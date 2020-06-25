@@ -46,14 +46,18 @@ class MessagesController extends AbstractController
                 ->context([
                     'mail' => $mail
                 ]);
-                $message->setType('contact');
-            $mailer->send($email);
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($message);
-            $entityManager->flush();
-            $this->addFlash('success', 'Votre message à bien était envoyé.');
+            $message->setType('contact');
+            if (isset($_POST['check'])) {
+                $mailer->send($email);
+                $entityManager = $this->getDoctrine()->getManager();
+                $entityManager->persist($message);
 
-            return $this->redirectToRoute('messages_new');
+                $entityManager->flush();
+                $this->addFlash('success', 'Votre message à bien était envoyé.');
+                return $this->redirectToRoute('messages_new');
+            } else {
+                $this->addFlash('check', 'Veuillez accepter les termes de la politique de confidentialités.');
+            }
         }
 
 
@@ -93,17 +97,17 @@ class MessagesController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/{id}", name="messages_delete", methods={"DELETE"})
-     */
-    public function delete(Request $request, Messages $message): Response
-    {
-        if ($this->isCsrfTokenValid('delete'.$message->getId(), $request->request->get('_token'))) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->remove($message);
-            $entityManager->flush();
-        }
+    // /**
+    //  * @Route("/{id}", name="messages_delete", methods={"DELETE"})
+    //  */
+    // public function delete(Request $request, Messages $message): Response
+    // {
+    //     if ($this->isCsrfTokenValid('delete' . $message->getId(), $request->request->get('_token'))) {
+    //         $entityManager = $this->getDoctrine()->getManager();
+    //         $entityManager->remove($message);
+    //         $entityManager->flush();
+    //     }
 
-        return $this->redirectToRoute('messages_index');
-    }
+    //     return $this->redirectToRoute('messages_index');
+    // }
 }

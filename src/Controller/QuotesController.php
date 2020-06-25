@@ -47,13 +47,17 @@ class QuotesController extends AbstractController
                 ->context([
                     'mail' => $mail
                 ]);
-            $mailer->send($email);
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($quote);
-            $entityManager->flush();
-            $this->addFlash('success', 'Votre devis à bien était envoyé.');
+            if (isset($_POST['check'])) {
+                $mailer->send($email);
+                $entityManager = $this->getDoctrine()->getManager();
+                $entityManager->persist($quote);
+                $entityManager->flush();
+                $this->addFlash('success', 'Votre devis à bien était envoyé.');
 
-            return $this->redirectToRoute('devis');
+                return $this->redirectToRoute('devis');
+            } else {
+                $this->addFlash('check', 'Veuillez accepter les termes de la politique de confidentialités.');
+            }
         }
 
         return $this->render('public/divers/devis.html.twig', [
