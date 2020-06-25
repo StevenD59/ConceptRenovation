@@ -47,6 +47,14 @@ class PublicController extends AbstractController
     }
 
     /**
+     * @Route("/politique_confidentialites", name="politique", methods={"GET"})
+     */
+    public function politique(): Response
+    {
+        return $this->render('public/divers/confidentialites.html.twig');
+    }
+
+    /**
      * @Route("/categories", name="categories", methods={"GET"})
      */
     public function categories(CategoriesRepository $categoriesRepository): Response
