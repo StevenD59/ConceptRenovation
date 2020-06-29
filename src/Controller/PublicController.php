@@ -7,8 +7,11 @@ use App\Entity\Works;
 use App\Repository\CategoriesRepository;
 use App\Repository\ImagesRepository;
 use App\Repository\WorksRepository;
+use Knp\Bundle\PaginatorBundle\Definition\PaginatorAwareInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 class PublicController extends AbstractController
@@ -62,15 +65,29 @@ class PublicController extends AbstractController
     /**
      * @Route("/categories/{id}", name="categories_show", methods={"GET"})
      */
-    public function categoriesShow(Categories $category, ImagesRepository $images): Response
+    public function categoriesShow(Categories $category, ImagesRepository $images, PaginatorInterface $paginator, Request $request): Response
     {
 
         $works = $category->getWorks();
 
+        $realisations = $paginator->paginate(
+            $works, // Requête contenant les données à paginer (ici nos articles)
+            $request->query->getInt('page', 1), // Numéro de la page en cours, passé dans l'URL, 1 si aucune page
+            1 // Nombre de résultats par page
+        );
+
+        $realisations->setCustomParameters([
+            'align'      => 'center', # center|right (for template: twitter_bootstrap_v4_pagination)
+            'size'       => '', # small|large (for template: twitter_bootstrap_v4_pagination)
+            'style'      => 'bottom',
+            'span_class' => 'whatever',
+        ]);
+
         return $this->render('public/works/show.html.twig', [
             'category' => $category,
-            'work' => $works,
-            'images' => $images->findAll()
+            // 'work' => $works,
+            'images' => $images->findAll(),
+            'realisations' => $realisations
         ]);
     }
 
