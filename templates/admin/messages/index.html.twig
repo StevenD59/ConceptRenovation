@@ -9,8 +9,9 @@
 		<table class="table">
 			<thead>
 				<tr>
-					<th class="col-6">Nom</th>
-					<th class="col-6">Types</th>
+					<th class="col-4">Nom</th>
+					<th class="col-4">Types</th>
+					<th class="col-4">Action</th>
 				</tr>
 			</thead>-
 			<tbody>
@@ -20,6 +21,7 @@
 					<tr>
 						<th scope="row">{{ message.name }}</th>
 						<th scope="row">{{ message.type }}</th>
+						<th scope="row">{{ include('admin/messages/_delete_form.html.twig') }}</th>
 					</tr>
 				{% endfor %}
 

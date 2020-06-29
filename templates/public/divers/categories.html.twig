@@ -5,8 +5,8 @@
 {% block body %}
 	<div class="row marginCategories">
 		{% for category in categories %}
-			<div class="col-12 col-xl-4">
-				<a href="{{ path('categories_show', {'id' : category.id} ) }}"><img src="{{ asset('assets/img/work.png') }}" alt="" class="img-fluid"></a>
+			<div class="col-12 col-xl-6">
+				<a href="{{ path('categories_show', {'id' : category.id} ) }}"><img src="{{ asset('assets/img/work.png') }}" alt="" class="img-fluid sizeImgCat"></a>
 				<h5 class="text-center bgCategories">
 					<a href="{{ path('categories_show', {'id' : category.id} ) }}" class="categories_link">{{ category.name }}</a>
 				</h5>

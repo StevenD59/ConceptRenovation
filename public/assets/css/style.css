@@ -49,6 +49,13 @@ html, body {
     height: 360px;
 }
 
+/* TAILLE IMAGE PAGE CATEGORIES */
+
+.sizeImgCat{
+    width: 500px;
+    height: 350px;
+}
+
 /* LI ACCUEIL */
 
 .liContent {
