@@ -72,6 +72,16 @@ class Quotes
 
     private $categories;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $ml;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $mc;
+
     public function __construct()
     {
         $this->createdAt = new DateTime();
@@ -211,6 +221,30 @@ class Quotes
     public function setCategories($categories)
     {
         $this->categories = $categories;
+
+        return $this;
+    }
+
+    public function getMl(): ?string
+    {
+        return $this->ml;
+    }
+
+    public function setMl(string $ml): self
+    {
+        $this->ml = $ml;
+
+        return $this;
+    }
+
+    public function getMc(): ?string
+    {
+        return $this->mc;
+    }
+
+    public function setMc(string $mc): self
+    {
+        $this->mc = $mc;
 
         return $this;
     }

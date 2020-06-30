@@ -4,7 +4,6 @@ namespace App\Form;
 
 use App\Entity\Categories;
 use App\Entity\Quotes;
-use App\Entity\Services;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
@@ -24,6 +23,8 @@ class QuotesType extends AbstractType
             ->add('name', TextType::class)
             ->add('email', TextType::class)
             ->add('phoneNumber', TextType::class)
+            ->add('ml', TextType::class)
+            ->add('mc', TextType::class)
             ->add('message', TextareaType::class)
             // ->add('isRead')
             ->add('categories', EntityType::class,[
