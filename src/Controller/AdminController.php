@@ -109,7 +109,32 @@ class AdminController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            
+
+            // On récupère les images transmises
+            $images = $form->get('images')->getData();
+            // On boucle sur les images
+            foreach ($images as $image) {
+                if ($image) {
+                    $mimeType = $image->getMimeType();
+                    if ($mimeType !== 'image/jpeg' && $mimeType !==  'image/png' && $mimeType !== 'image/tiff' && $mimeType !==  'image/webp' && $mimeType !== 'image/jpg') {
+                        {
+                            $this->addFlash('alerte', 'Veuillez choisir des images valides.(JPEG, JPG, PNG)');
+                            return $this->redirectToRoute('works_new');
+                        }
+                    }
+                }
+                // On génère un nouveau nom de fichier
+                $fichier = md5(uniqid()) . '.' . $image->guessExtension();
+                // On copie le fichier dans le dossier uploads
+                $image->move(
+                    $this->getParameter('upload_directory'),
+                    $fichier
+                );
+                // On crée l'image dans la base de données
+                $img = new Images();
+                $img->setName($fichier);
+                $work->addImage($img);
+            }
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('works_index');
@@ -120,6 +145,26 @@ class AdminController extends AbstractController
             'id' => $work->getId(),
             'form' => $form->createView(),
         ]);
+    }
+
+
+    /**
+     * @Route("/supprime/image/{id}", name="delete_image", methods={"DELETE"})
+     */
+    public function deleteImage(Images $image, Request $request): Response
+    {
+        // On vérifie si le token est valide
+        if ($this->isCsrfTokenValid('delete'.$image->getId(), $request->request->get('_token'))) {
+            // On récupère le nom de l'image
+            $nom = $image->getName();
+            // On supprime le fichier
+            unlink($this->getParameter('upload_directory').'/'.$nom);
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->remove($image);
+            $entityManager->flush();
+        }
+
+        return $this->redirectToRoute('works_edit', ['id' => $image->getWorks()->getId()]);
     }
 
     /**
