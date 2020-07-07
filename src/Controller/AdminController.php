@@ -50,7 +50,6 @@ class AdminController extends AbstractController
         $work = new Works();
         $form = $this->createForm(WorksType::class, $work);
         $form->handleRequest($request);
-        $error = '';
 
         if ($form->isSubmitted() && $form->isValid()) {
             $user = $this->getUser();
@@ -95,7 +94,7 @@ class AdminController extends AbstractController
         return $this->render('admin/works/new.html.twig', [
             'work' => $work,
             'form' => $form->createView(),
-            'errors' => $error
+            
         ]);
     }
 
