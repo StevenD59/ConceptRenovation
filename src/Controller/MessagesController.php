@@ -39,8 +39,8 @@ class MessagesController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $mail = $form->getData();
             $email = (new TemplatedEmail())
-                ->from(new Address('zetlaas@gmail.com', 'Concept Rénovation'))
-                ->to('zetlaas@gmail.com')
+                ->from(new Address('***@gmail.com', 'Concept Rénovation'))
+                ->to('***@gmail.com')
                 ->subject('Contact')
                 ->htmlTemplate('mail.html.twig')
                 ->context([
