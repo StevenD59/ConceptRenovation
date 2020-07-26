@@ -51,11 +51,10 @@ class AdminController extends AbstractController
         $form = $this->createForm(WorksType::class, $work);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) { 
             $user = $this->getUser();
             $work->setUsers($user);
-
-
+            
             // On récupère les images transmises
             $images = $form->get('images')->getData();
             // On boucle sur les images
